@@ -1,3 +1,27 @@
+e2fsprogs (1.45.5-2ubuntu1) focal; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+  * Dropped changes, included upstream:
+    - debian/patches/CVE-2019-5188-*.patch:  abort if there is a corrupted
+      directory block when rehashing and don't try to rehash a deleted directory
+      in e2fsck/rehash.c, e2fsck/pass1b.c.
+    - debian/patches/CVE-2019-5094.patch: add checks to prevent
+      buffer overrun in quota code in lib/support/quotaio_tree.c,
+      lib/support/quotaio_v2.c, lib/support/mkquota.c.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 13 Feb 2020 22:08:18 -0800
+
+e2fsprogs (1.45.5-2) unstable; urgency=medium
+
+  * Fix com_err support on Hurd, which has POSIX E* error code starting at
+    0x40000000.  Otherwise the regression tests will fail since the
+    expected output for various error cases will not have the correct
+    error text.
+
+ -- Theodore Y. Ts'o <tytso@mit.edu>  Wed, 08 Jan 2020 15:58:44 -0500
+
 e2fsprogs (1.45.5-1) unstable; urgency=medium
 
   * New upstream feature
@@ -51,6 +75,34 @@ e2fsprogs (1.45.4-1) unstable; urgency=medium
   * Update the Dutch, German, Malay, Spanish, and Vietnamese translations
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Mon, 23 Sep 2019 15:31:27 -0400
+
+e2fsprogs (1.45.3-4ubuntu3) focal; urgency=medium
+
+  * SECURITY UPDATE: Out-of-bounds write
+    - debian/patches/CVE-2019-5188-*.patch:  abort if there is a corrupted
+      directory block when rehashing and don't try to rehash a deleted directory
+      in e2fsck/rehash.c, e2fsck/pass1b.c.
+    - CVE-2019-5188
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Wed, 22 Jan 2020 12:01:15 -0300
+
+e2fsprogs (1.45.3-4ubuntu2) eoan; urgency=medium
+
+  * SECURITY UPDATE: Out-of-bounds write on the heap
+    - debian/patches/CVE-2019-5094.patch: add checks to prevent
+      buffer overrun in quota code in lib/support/quotaio_tree.c,
+      lib/support/quotaio_v2.c, lib/support/mkquota.c.
+    - CVE-2019-5094
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Mon, 30 Sep 2019 14:57:59 -0300
+
+e2fsprogs (1.45.3-4ubuntu1) eoan; urgency=medium
+
+  * Merge with Debian testing, remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Sun, 08 Sep 2019 04:12:08 -0600
 
 e2fsprogs (1.45.3-4) unstable; urgency=medium
 
@@ -112,6 +164,15 @@ e2fsprogs (1.45.3-1) unstable; urgency=medium
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Sun, 14 Jul 2019 21:01:11 -0400
 
+e2fsprogs (1.45.2-1ubuntu1) eoan; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf such that lvm migration
+      between non-4k PVs and 4k PVs works irrespective of the volume
+      size.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 24 Jun 2019 11:51:53 +0200
+
 e2fsprogs (1.45.2-1) unstable; urgency=medium
 
   * New upstream version
@@ -138,6 +199,14 @@ e2fsprogs (1.45.1-2) unstable; urgency=medium
     no lvm devices present in the system (Closes: #928977, #929186, #929254)
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Mon, 20 May 2019 11:02:09 -0400
+
+e2fsprogs (1.45.1-1ubuntu1) eoan; urgency=medium
+
+  * Use 4k blocksize in all ext4 mke2fs.conf such that lvm migration
+    between non-4k PVs and 4k PVs works irrespective of the volume
+    size. LP: #1817097
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Wed, 15 May 2019 16:15:22 +0200
 
 e2fsprogs (1.45.1-1) unstable; urgency=medium
 
@@ -4548,3 +4617,4 @@ e2fsprogs (0.5b-1) unstable; urgency=low
   * added Debian GNU/Linux package maintenance system files
 
  -- Bruce Perens <Bruce@Pixar.com>  Thu, 3 Aug 1995 00:00:00 +0000
+
