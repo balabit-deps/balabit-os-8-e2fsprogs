@@ -1,3 +1,14 @@
+e2fsprogs (1.45.5-2ubuntu1.1) focal-security; urgency=medium
+
+  * SECURITY UPDATE: Out-of-bounds read/write vulnerability
+    Issue leads to segmentation fault and possibly arbitrary code
+    execution via a specially crafted filesystem.
+    - debian/patches/CVE-2022-1304.patch: checks that all leaf nodes of
+      file system contain at least one extent.
+    - CVE-2022-1304
+
+ -- Mark Esler <mark.esler@canonical.com>  Wed, 01 Jun 2022 19:59:32 -0500
+
 e2fsprogs (1.45.5-2ubuntu1) focal; urgency=low
 
   * Merge from Debian unstable.  Remaining changes:
